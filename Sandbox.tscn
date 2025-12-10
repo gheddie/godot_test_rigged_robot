@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bamkfygkf83ex"]
+
+[ext_resource type="PackedScene" uid="uid://cprv5evv4tif4" path="res://Robot.tscn" id="1_y8ncq"]
+
+[node name="Sandbox" type="Node3D"]
+
+[node name="Robot" parent="." instance=ExtResource("1_y8ncq")]

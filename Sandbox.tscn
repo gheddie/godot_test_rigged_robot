@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bamkfygkf83ex"]
+[gd_scene load_steps=6 format=3 uid="uid://bamkfygkf83ex"]
 
 [ext_resource type="PackedScene" uid="uid://cprv5evv4tif4" path="res://Robot.tscn" id="1_y8ncq"]
+[ext_resource type="PackedScene" uid="uid://bpy2nn3et3r83" path="res://WalkPlate.tscn" id="2_gaqdb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y8ncq"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -15,16 +16,6 @@ sky = SubResource("Sky_gaqdb")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y8ncq"]
-albedo_color = Color(0.3647059, 0.3764706, 0.2901961, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_y8ncq"]
-material = SubResource("StandardMaterial3D_y8ncq")
-size = Vector3(100, 1, 100)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_y8ncq"]
-size = Vector3(101, 1, 37)
-
 [node name="Sandbox" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -35,13 +26,18 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="Robot" parent="." instance=ExtResource("1_y8ncq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2749996, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7750001, 0)
 
-[node name="Floor" type="StaticBody3D" parent="."]
+[node name="Floor" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-mesh = SubResource("BoxMesh_y8ncq")
+[node name="WalkPlate1" parent="Floor" instance=ExtResource("2_gaqdb")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.782458, 0, 0, 0)
-shape = SubResource("BoxShape3D_y8ncq")
+[node name="WalkPlate2" parent="Floor" instance=ExtResource("2_gaqdb")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 40, 0, 0)
+
+[node name="WalkPlate3" parent="Floor" instance=ExtResource("2_gaqdb")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 80, 0, 0)
+
+[node name="WalkPlate4" parent="Floor" instance=ExtResource("2_gaqdb")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 120, 0, 0)

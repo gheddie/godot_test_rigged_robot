@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://bopsphlbaxl1s" path="res://Robot.gd" id="1_lhh6t"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8p8qe"]
-radius = 2.0
-height = 4.125
+radius = 1.7578125
+height = 3.515625
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8p8qe"]
 animation = &"default"
@@ -3870,7 +3870,7 @@ script = ExtResource("1_lhh6t")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -10, 5, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 3.1000001, 0, 0, 0, 2.1, 0, 5.61875, 0)
+transform = Transform3D(1, 0, 0, 0, 3.1000001, 0, 0, 0, 2.1, 0, 5.584843, 0)
 shape = SubResource("CapsuleShape3D_8p8qe")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -4360,6 +4360,12 @@ bone_idx = 0
 transform = Transform3D(0.089839935, 0.08918347, 0.99195516, 0.003278356, 0.9959508, -0.08983963, -0.9959508, 0.011323169, 0.08918378, 0.3431785, 2.5715497, 0.025659563)
 mesh = SubResource("ArrayMesh_uoenl")
 skeleton = NodePath("")
+
+[node name="AlteredCameraPivot" type="Node3D" parent="TestRiggedRobot/Armature/Skeleton3D/spine/Body"]
+transform = Transform3D(3.5762787e-07, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 3.5762787e-07, -2.5238526, 2.4473267, -0.5114294)
+
+[node name="BackposCameraPivot" type="Node3D" parent="TestRiggedRobot/Armature/Skeleton3D/spine/Body"]
+transform = Transform3D(3.5762787e-07, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 3.5762787e-07, -0.023854371, -2.5526733, -6.5114303)
 
 [node name="Body_001" type="MeshInstance3D" parent="TestRiggedRobot/Armature/Skeleton3D/spine/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07771826, 0.021004621)

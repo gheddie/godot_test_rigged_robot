@@ -2,6 +2,36 @@
 
 [ext_resource type="Script" uid="uid://bopsphlbaxl1s" path="res://Robot.gd" id="1_lhh6t"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8p8qe"]
+radius = 1.7578125
+height = 3.515625
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8p8qe"]
+animation = &"default"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lhh6t"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lhh6t"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8mo4m"]
+xfade_time = 0.5
+advance_mode = 2
+advance_condition = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gr7he"]
+xfade_time = 0.5
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8mo4m"]
+states/default/node = SubResource("AnimationNodeAnimation_8p8qe")
+states/default/position = Vector2(317, 100)
+states/walk/node = SubResource("AnimationNodeAnimation_lhh6t")
+states/walk/position = Vector2(317, 198)
+transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransition_lhh6t"), "default", "walk", SubResource("AnimationNodeStateMachineTransition_8mo4m"), "walk", "default", SubResource("AnimationNodeStateMachineTransition_gr7he")]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hbm0"]
 resource_name = "Black.001"
 cull_mode = 2
@@ -3833,38 +3863,22 @@ _data = {
 &"walk": SubResource("Animation_qng0d")
 }
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8p8qe"]
-radius = 1.7578125
-height = 3.515625
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8p8qe"]
-animation = &"default"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lhh6t"]
-animation = &"walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lhh6t"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8mo4m"]
-xfade_time = 0.5
-advance_mode = 2
-advance_condition = &"walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gr7he"]
-xfade_time = 0.5
-advance_mode = 2
-advance_condition = &"idle"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8mo4m"]
-states/default/node = SubResource("AnimationNodeAnimation_8p8qe")
-states/default/position = Vector2(317, 100)
-states/walk/node = SubResource("AnimationNodeAnimation_lhh6t")
-states/walk/position = Vector2(317, 198)
-transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransition_lhh6t"), "default", "walk", SubResource("AnimationNodeStateMachineTransition_8mo4m"), "walk", "default", SubResource("AnimationNodeStateMachineTransition_gr7he")]
-
 [node name="Robot" type="CharacterBody3D"]
 script = ExtResource("1_lhh6t")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -10, 5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 3.1000001, 0, 0, 0, 2.1, 0, 5.584843, 0)
+shape = SubResource("CapsuleShape3D_8p8qe")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../TestRiggedRobot")
+tree_root = SubResource("AnimationNodeStateMachine_8mo4m")
+anim_player = NodePath("../TestRiggedRobot/AnimationPlayer")
+parameters/conditions/idle = false
+parameters/conditions/walk = false
 
 [node name="TestRiggedRobot" type="Node3D" parent="."]
 
@@ -4436,7 +4450,7 @@ mesh = SubResource("ArrayMesh_xaejd")
 skeleton = NodePath("")
 
 [node name="FrontPosCameraPivot" type="Node3D" parent="TestRiggedRobot/Armature/Skeleton3D/spine/Body"]
-transform = Transform3D(-3.5762787e-07, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -3.5762787e-07, -0.023850387, -2.5526738, 6.4885697)
+transform = Transform3D(3.5762787e-07, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 3.5762787e-07, -0.023850387, -2.5526738, 6.4885697)
 
 [node name="ShoulderCameraPivot" type="Node3D" parent="TestRiggedRobot/Armature/Skeleton3D/spine/Body"]
 transform = Transform3D(3.5762787e-07, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 3.5762787e-07, -2.5238526, 2.4473267, -0.5114294)
@@ -4458,17 +4472,3 @@ skeleton = NodePath("")
 libraries = {
 &"": SubResource("AnimationLibrary_aidoa")
 }
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -10, 5, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 3.1000001, 0, 0, 0, 2.1, 0, 5.584843, 0)
-shape = SubResource("CapsuleShape3D_8p8qe")
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../TestRiggedRobot")
-tree_root = SubResource("AnimationNodeStateMachine_8mo4m")
-anim_player = NodePath("../TestRiggedRobot/AnimationPlayer")
-parameters/conditions/idle = false
-parameters/conditions/walk = false

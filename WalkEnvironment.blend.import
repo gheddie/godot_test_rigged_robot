@@ -3,12 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://blypt7br7j23"
-valid=false
+uid="uid://l45cj2mv55t5"
+path="res://.godot/imported/WalkEnvironment.blend-101adc66d0698bf49cf1f2ec2c736699.scn"
 
 [deps]
 
-source_file="res://TestRiggedRobot.blend"
+source_file="res://WalkEnvironment.blend"
+dest_files=["res://.godot/imported/WalkEnvironment.blend-101adc66d0698bf49cf1f2ec2c736699.scn"]
 
 [params]
 

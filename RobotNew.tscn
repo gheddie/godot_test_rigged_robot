@@ -1,4 +1,4 @@
-[gd_scene load_steps=200 format=4 uid="uid://vdqrlhft82s3"]
+[gd_scene load_steps=197 format=4 uid="uid://vdqrlhft82s3"]
 
 [ext_resource type="Script" uid="uid://bwx0tu0wkl8ou" path="res://RobotNew.gd" id="1_bjthi"]
 
@@ -27,25 +27,13 @@ xfade_time = 0.5
 advance_mode = 2
 advance_condition = &"idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rn77p"]
-xfade_time = 0.5
-advance_mode = 2
-advance_condition = &"tipple"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w1jio"]
-advance_mode = 2
-advance_condition = &"idle"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bjthi"]
 advance_mode = 2
 advance_condition = &"tipple"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3er60"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rn77p"]
 advance_mode = 2
-advance_condition = &"walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ifnbh"]
-advance_mode = 2
+advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cq5cj"]
 states/End/position = Vector2(701, 77)
@@ -53,10 +41,10 @@ states/Start/position = Vector2(205, 77)
 states/idle/node = SubResource("AnimationNodeAnimation_cq5cj")
 states/idle/position = Vector2(333, 77)
 states/tipple/node = SubResource("AnimationNodeAnimation_8ejs6")
-states/tipple/position = Vector2(457, 77)
+states/tipple/position = Vector2(459, 77)
 states/walk/node = SubResource("AnimationNodeAnimation_bjthi")
 states/walk/position = Vector2(333, 199)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_cq5cj"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_8ejs6"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_h4naf"), "idle", "tipple", SubResource("AnimationNodeStateMachineTransition_rn77p"), "tipple", "idle", SubResource("AnimationNodeStateMachineTransition_w1jio"), "walk", "tipple", SubResource("AnimationNodeStateMachineTransition_bjthi"), "tipple", "walk", SubResource("AnimationNodeStateMachineTransition_3er60"), "tipple", "End", SubResource("AnimationNodeStateMachineTransition_ifnbh")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_cq5cj"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_8ejs6"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_h4naf"), "idle", "tipple", SubResource("AnimationNodeStateMachineTransition_bjthi"), "tipple", "idle", SubResource("AnimationNodeStateMachineTransition_rn77p")]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hbm0"]
 resource_name = "Black.001"
@@ -4730,3 +4718,26 @@ skeleton = NodePath("")
 libraries = {
 &"": SubResource("AnimationLibrary_segj7")
 }
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Idle" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Idle"
+
+[node name="Walk" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Walk"
+
+[node name="Tipple" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Tipple"
+
+[connection signal="pressed" from="GridContainer/Idle" to="." method="onIdlePressed"]
+[connection signal="pressed" from="GridContainer/Walk" to="." method="onWalkPressed"]
+[connection signal="pressed" from="GridContainer/Tipple" to="." method="onTipplePressed"]

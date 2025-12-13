@@ -13,18 +13,26 @@ var walking :bool = false
 @onready var backPosLeftCameraPivot: Node3D = $TestRiggedRobot/Armature/Skeleton3D/spine/Body/BackPosLeftCameraPivot
 @onready var backPosRightCameraPivot: Node3D = $TestRiggedRobot/Armature/Skeleton3D/spine/Body/BackPosRightCameraPivot
 
+enum MoveActionNew {WALK, NONE, TURN}
+
+var actualMoveAction: MoveActionNew = MoveActionNew.NONE
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera.global_position = backPosRightCameraPivot.global_position
 	
-func handle_rotation() -> void:
+func handle_rotation() -> bool:
 	rotation.y += mouseMotion.x
 	if !walking:
 		if abs(mouseMotion.x) > 0.0:
 			# print(mouseMotion.x)
 			tipple()
+			return true
 		else:
 			idle()
+			return false
+	else:
+		return false
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -52,17 +60,29 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func walk() -> void:
+	print("new robot walking...")
 	animationTree["parameters/conditions/idle"] = false
-	animationTree["parameters/conditions/walk"] = true	
 	animationTree["parameters/conditions/tipple"] = false
+	animationTree["parameters/conditions/walk"] = true
 	
 func idle() -> void:
+	print("new robot idling...")
 	animationTree["parameters/conditions/idle"] = true
-	animationTree["parameters/conditions/walk"] = false	
 	animationTree["parameters/conditions/tipple"] = false
+	animationTree["parameters/conditions/walk"] = false
 
 func tipple() -> void:
-	print("tipple...")
+	print("new robot tippling...")
 	animationTree["parameters/conditions/idle"] = false
-	animationTree["parameters/conditions/walk"] = false	
 	animationTree["parameters/conditions/tipple"] = true
+	animationTree["parameters/conditions/walk"] = false
+
+
+func onIdlePressed() -> void:
+	idle()
+
+func onWalkPressed() -> void:
+	walk()
+
+func onTipplePressed() -> void:
+	tipple()

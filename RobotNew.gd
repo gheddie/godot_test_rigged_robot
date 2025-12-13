@@ -6,9 +6,16 @@ const SPEED = 12.0
 var mouseMotion := Vector2.ZERO
 
 @onready var animationTree: AnimationTree = $AnimationTree
+@onready var backPosCameraPivot: Node3D = $TestRiggedRobot/Armature/Skeleton3D/spine/Body/BackPosCameraPivot
+@onready var camera: Camera3D = $Camera3D
+
+@onready var backPosLeftCameraPivot: Node3D = $TestRiggedRobot/Armature/Skeleton3D/spine/Body/BackPosLeftCameraPivot
+@onready var backPosRightCameraPivot: Node3D = $TestRiggedRobot/Armature/Skeleton3D/spine/Body/BackPosRightCameraPivot
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	# camera.global_position = backPosCameraPivot.global_position
+	camera.global_position = backPosRightCameraPivot.global_position
 	
 func handle_rotation() -> void:
 	rotation.y += mouseMotion.x

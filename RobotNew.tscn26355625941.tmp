@@ -4718,3 +4718,26 @@ skeleton = NodePath("")
 libraries = {
 &"": SubResource("AnimationLibrary_segj7")
 }
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Idle" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Idle"
+
+[node name="Walk" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Walk"
+
+[node name="Tipple" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Tipple"
+
+[connection signal="pressed" from="GridContainer/Idle" to="." method="onIdlePressed"]
+[connection signal="pressed" from="GridContainer/Walk" to="." method="onWalkPressed"]
+[connection signal="pressed" from="GridContainer/Tipple" to="." method="onTipplePressed"]

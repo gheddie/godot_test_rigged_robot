@@ -4,6 +4,7 @@ extends CharacterBody3D
 const SPEED = 12.0
 
 var mouseMotion := Vector2.ZERO
+var walking :bool = false
 
 @onready var animationTree: AnimationTree = $AnimationTree
 @onready var backPosCameraPivot: Node3D = $TestRiggedRobot/Armature/Skeleton3D/spine/Body/BackPosCameraPivot
@@ -14,11 +15,16 @@ var mouseMotion := Vector2.ZERO
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	# camera.global_position = backPosCameraPivot.global_position
 	camera.global_position = backPosRightCameraPivot.global_position
 	
 func handle_rotation() -> void:
 	rotation.y += mouseMotion.x
+	if !walking:
+		if abs(mouseMotion.x) > 0.0:
+			# print(mouseMotion.x)
+			tipple()
+		else:
+			idle()
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -37,16 +43,26 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 		walk()
+		walking = true
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		idle()
+		walking = false
 	move_and_slide()
 
 func walk() -> void:
 	animationTree["parameters/conditions/idle"] = false
 	animationTree["parameters/conditions/walk"] = true	
+	animationTree["parameters/conditions/tipple"] = false
 	
 func idle() -> void:
 	animationTree["parameters/conditions/idle"] = true
 	animationTree["parameters/conditions/walk"] = false	
+	animationTree["parameters/conditions/tipple"] = false
+
+func tipple() -> void:
+	print("tipple...")
+	animationTree["parameters/conditions/idle"] = false
+	animationTree["parameters/conditions/walk"] = false	
+	animationTree["parameters/conditions/tipple"] = true

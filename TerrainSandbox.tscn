@@ -1,0 +1,131 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6wsv4q6mn024"]
+
+[ext_resource type="PackedScene" uid="uid://vdqrlhft82s3" path="res://RobotNew.tscn" id="2_01kq0"]
+[ext_resource type="PackedScene" uid="uid://bk6rvvpya8jkl" path="res://Mountain.tscn" id="2_v4lpv"]
+[ext_resource type="PackedScene" uid="uid://c0h8paxdnousm" path="res://PalmTree.tscn" id="3_v4lpv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_01kq0"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_v4lpv"]
+sky_material = SubResource("ProceduralSkyMaterial_01kq0")
+
+[sub_resource type="Environment" id="Environment_8yd53"]
+background_mode = 2
+sky = SubResource("Sky_v4lpv")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="TerrainSandbox" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8yd53")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Robot" parent="." instance=ExtResource("2_01kq0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 276.17505, 11.687505, 170.13754)
+
+[node name="Mountain" parent="." instance=ExtResource("2_v4lpv")]
+transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
+
+[node name="Trees" type="Node3D" parent="."]
+
+[node name="PalmTree1" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 327.59955, 36.279648, 103.15275)
+
+[node name="PalmTree2" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 278.38904, 40.742756, 78.54752)
+
+[node name="PalmTree3" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(0.98777556, -0.1558828, 0, 0.15525304, 0.983785, -0.08979824, 0.013998002, 0.08870051, 0.99596, 327.59955, 11.750042, 200.62735)
+
+[node name="PalmTree4" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 327.59955, 37.411274, 136.27518)
+
+[node name="PalmTree5" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 388.16644, 20.147175, 188.32474)
+
+[node name="PalmTree6" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 349.36578, 11.750042, 238.48158)
+
+[node name="PalmTree7" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 367.34662, 21.888315, 206.30548)
+
+[node name="PalmTree8" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 349.36578, 30.255705, 141.95331)
+
+[node name="PalmTree9" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.86484, 44, 39.74694)
+
+[node name="PalmTree10" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.65433, 44.000015, 15.141716)
+
+[node name="PalmTree11" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.86484, 11.749983, 137.22154)
+
+[node name="PalmTree12" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.86484, 44, 72.86937)
+
+[node name="PalmTree13" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 189.43173, 44, 124.91893)
+
+[node name="PalmTree14" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150.63107, 44.000015, 84.22563)
+
+[node name="PalmTree15" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 168.61191, 44.000015, 52.04953)
+
+[node name="PalmTree16" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150.63107, 44.000015, -12.302643)
+
+[node name="PalmTree17" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 327.59955, 11.749998, 286.28336)
+
+[node name="PalmTree18" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 278.38904, 7.44018, 261.67813)
+
+[node name="PalmTree19" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 327.59955, 1.4901161e-05, 383.75797)
+
+[node name="PalmTree20" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 327.59955, -1.4901161e-05, 319.4058)
+
+[node name="PalmTree21" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 388.16644, 0, 371.45535)
+
+[node name="PalmTree22" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 349.36578, 1.4901161e-05, 421.61218)
+
+[node name="PalmTree23" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 367.34662, 0, 389.4361)
+
+[node name="PalmTree24" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 349.36578, 3.2903104, 325.08392)
+
+[node name="PalmTree25" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.86484, 5.822033, 222.87756)
+
+[node name="PalmTree26" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.65433, 11.750012, 198.27234)
+
+[node name="PalmTree27" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.86484, 1.4901161e-05, 320.35217)
+
+[node name="PalmTree28" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.86484, 0, 255.99998)
+
+[node name="PalmTree29" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 189.43173, 0, 308.04956)
+
+[node name="PalmTree30" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150.63107, 0, 267.35626)
+
+[node name="PalmTree31" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 168.61191, 0, 235.18015)
+
+[node name="PalmTree32" parent="Trees" instance=ExtResource("3_v4lpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150.63107, 11.749983, 170.82797)

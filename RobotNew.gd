@@ -44,10 +44,10 @@ func _process(_delta: float) -> void:
 func tweenCamera(_delta: float) -> void:
 	var tweenTarget: Node3D
 	if actualMoveAction == MoveActionNew.WALK:
-		print("shoulder...")
+		# print("shoulder...")
 		tweenTarget = backPosRightCameraPivot
 	else:
-		print("back...")
+		# print("back...")
 		tweenTarget = rightShoulderCameraPivot
 	if camera.global_position != tweenTarget.global_position:
 		var cameraPositionTween = get_tree().create_tween()

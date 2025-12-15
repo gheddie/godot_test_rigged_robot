@@ -5,6 +5,7 @@ const SPEED = 12.0
 const TURN_TRESHOLD = 0.01
 const TURN_SPEED = 75.0
 const CAMERA_TWEEN_SPEED = 0.75
+const JUMP_VELOCITY = 10
 
 var mouseMotion := Vector2.ZERO
 
@@ -57,6 +58,9 @@ func _physics_process(delta: float) -> void:
 	handle_rotation(delta)
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	# Handle jump.
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
 	var input_dir := Input.get_vector("walkBackward", "walkForward", "ui_left", "ui_right")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bhxajgmmsu35q"
-path="res://.godot/imported/Lift.blend-873334e4b6fff307eb1330eeedffad9b.scn"
+uid="uid://v1cgecxy3shb"
+path="res://.godot/imported/LiftFrame.blend-892fee915e827fbcf2264e3807f4dbc5.scn"
 
 [deps]
 
-source_file="res://Lift.blend"
-dest_files=["res://.godot/imported/Lift.blend-873334e4b6fff307eb1330eeedffad9b.scn"]
+source_file="res://asset/lift/blender/LiftFrame.blend"
+dest_files=["res://.godot/imported/LiftFrame.blend-892fee915e827fbcf2264e3807f4dbc5.scn"]
 
 [params]
 

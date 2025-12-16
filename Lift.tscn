@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbthu2v5c8tn"]
-
-[ext_resource type="Script" uid="uid://db50nqwpxpcak" path="res://Lift.gd" id="1_1v0bp"]
-[ext_resource type="PackedScene" uid="uid://cfirwl5kv5u5j" path="res://Lift.glb" id="1_8jovx"]
-
-[node name="Lift" type="CharacterBody3D"]
-script = ExtResource("1_1v0bp")
-
-[node name="Lift" parent="." instance=ExtResource("1_8jovx")]

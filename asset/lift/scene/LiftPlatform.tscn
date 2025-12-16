@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq8yufi0c6rl5"]
+
+[ext_resource type="PackedScene" uid="uid://cb8onybritj18" path="res://asset/lift/blender/LiftPlatform.glb" id="1_mmjft"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kn8xk"]
+size = Vector3(4.2000003, 0.7, 4.2000003)
+
+[node name="LiftPlatform" type="StaticBody3D"]
+
+[node name="LiftPlatform" parent="." instance=ExtResource("1_mmjft")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9604645e-08, 0.05000004, -5.9604645e-08)
+shape = SubResource("BoxShape3D_kn8xk")

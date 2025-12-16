@@ -1,11 +1,11 @@
 class_name RobotNew
 extends CharacterBody3D
 
-const SPEED = 12.0
+const SPEED = 3.0
 const TURN_TRESHOLD = 0.01
 const TURN_SPEED = 75.0
 const CAMERA_TWEEN_SPEED = 0.75
-const JUMP_VELOCITY = 10
+const JUMP_VELOCITY = 5.0
 
 var mouseMotion := Vector2.ZERO
 

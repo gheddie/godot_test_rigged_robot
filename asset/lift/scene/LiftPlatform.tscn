@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cq8yufi0c6rl5"]
+[gd_scene load_steps=4 format=3 uid="uid://cq8yufi0c6rl5"]
 
+[ext_resource type="Script" uid="uid://d0va6ldtq4brq" path="res://asset/lift/scene/LiftPlatform.gd" id="1_3hg5h"]
 [ext_resource type="PackedScene" uid="uid://cb8onybritj18" path="res://asset/lift/blender/LiftPlatform.glb" id="1_mmjft"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kn8xk"]
 size = Vector3(4.2000003, 0.7, 4.2000003)
 
 [node name="LiftPlatform" type="StaticBody3D"]
+script = ExtResource("1_3hg5h")
 
 [node name="LiftPlatform" parent="." instance=ExtResource("1_mmjft")]
 

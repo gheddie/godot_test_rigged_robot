@@ -1,0 +1,2 @@
+class_name LiftFrame
+extends StaticBody3D

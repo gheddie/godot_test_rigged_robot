@@ -1,0 +1,2 @@
+class_name LiftPlatform
+extends StaticBody3D

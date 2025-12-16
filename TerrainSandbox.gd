@@ -7,4 +7,4 @@ extends Node3D
 func _ready() -> void:
 	PlayerAccessInstance.player = robot
 	print(str("self --> ", str(self)))
-	StackedLift.new(Vector3(15.59202, 114.2, -117.2), 10.0, false).renderInScene(self)
+	StackedLift.new(Vector3(15.59202, 114.2, -117.2), 10.0, false, 2.6).renderInScene(self)

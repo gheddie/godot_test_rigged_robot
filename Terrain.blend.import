@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dm513woa44c7q"
-path="res://.godot/imported/BiggerTerrainExample.blend-81e35f58497565ee35047ca4c5a3fd58.scn"
+uid="uid://jiufh8rm62k2"
+path="res://.godot/imported/Terrain.blend-ac72bccf596d94499001eeba3e6c7b72.scn"
 
 [deps]
 
-source_file="res://BiggerTerrainExample.blend"
-dest_files=["res://.godot/imported/BiggerTerrainExample.blend-81e35f58497565ee35047ca4c5a3fd58.scn"]
+source_file="res://Terrain.blend"
+dest_files=["res://.godot/imported/Terrain.blend-ac72bccf596d94499001eeba3e6c7b72.scn"]
 
 [params]
 

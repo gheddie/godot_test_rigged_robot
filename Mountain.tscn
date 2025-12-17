@@ -129,6 +129,15 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 shape = SubResource("ConcavePolygonShape3D_pl5lc")
 
+[node name="LiftMarker1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03125, -0.09962742, -0.234375)
+
+[node name="LiftMarker2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03125, 0.228544, -0.234375)
+
+[node name="LiftMarker3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03125, 0.284544, -0.234375)
+
 [node name="AssetMarker1" type="Node3D" parent="."]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0.791169, 0.0108731985, 0.8020069)
 

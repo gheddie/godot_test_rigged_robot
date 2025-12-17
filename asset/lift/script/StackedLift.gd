@@ -5,6 +5,7 @@ var basePosition: Vector3
 var height: float
 var startTop: bool
 var scaleFactor: float
+var verticalSpeed: float
 
 var bottom: LiftFrame
 var top: LiftFrame
@@ -20,11 +21,12 @@ enum StackedLiftAction {IDLE_BOTTOM, IDLE_TOP, ASCENDING, DESCENDING}
 
 var actualLiftAction: StackedLiftAction
 
-func _init(aBasePosition: Vector3, aHeight: float, aStartTop: bool, aScaleFactor: float) -> void:
+func _init(aBasePosition: Vector3, aHeight: float, aStartTop: bool, aScaleFactor: float, aVerticalSpeed: float) -> void:
 	basePosition = aBasePosition
 	height = aHeight
 	startTop = aStartTop
 	scaleFactor = aScaleFactor
+	verticalSpeed = aVerticalSpeed
 	actualLiftAction = StackedLiftAction.IDLE_BOTTOM
 
 func renderInScene(parent: Node3D) -> void:

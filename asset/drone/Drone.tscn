@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx7x16xh34vun"]
+
+[ext_resource type="Script" uid="uid://qyqjridoorl2" path="res://asset/drone/Drone.gd" id="1_0b83f"]
+[ext_resource type="PackedScene" uid="uid://cshp07xgtwqk" path="res://asset/drone/Drone.glb" id="1_43yun"]
+
+[node name="Drone" type="CharacterBody3D"]
+script = ExtResource("1_0b83f")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, -2.1855694e-08, 8.156656e-08, 2.1855694e-08, 0.8660254, 0.5, -8.156656e-08, 0.5, -0.8660254, -8.940697e-08, 2.3000002, -3)
+
+[node name="Drone" parent="." instance=ExtResource("1_43yun")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)

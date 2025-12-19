@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4pg2k41vcifq"]
+
+[ext_resource type="PackedScene" uid="uid://jq4a1xbdnpi0" path="res://PathMarker.glb" id="1_gauwj"]
+
+[node name="PathMarker" instance=ExtResource("1_gauwj")]

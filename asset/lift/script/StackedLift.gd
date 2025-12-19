@@ -49,20 +49,31 @@ func scaleIt(elementToScale: Node3D) -> Node3D:
 	return elementToScale
 
 func platformInvoked() -> void:
+	print("lift platform invoked...")
 	if (actualLiftAction == StackedLiftAction.IDLE_BOTTOM):
 		actualLiftAction = StackedLiftAction.ASCENDING
 		targetFrame = top
+	if (actualLiftAction == StackedLiftAction.IDLE_TOP):
+		actualLiftAction = StackedLiftAction.DESCENDING
+		targetFrame = bottom
 
 func onProcess(_delta: float) -> void:
 	if (actualLiftAction == StackedLiftAction.ASCENDING):
 		platform.rise(_delta)
+	if (actualLiftAction == StackedLiftAction.DESCENDING):
+		platform.fall(_delta)
 
 func platformMoved(newPlatformPos: Vector3) -> void:
 	print(str("platform moved to --> ", str(newPlatformPos.y)))
 	var distanceToTarget = abs(platform.global_position.y - targetFrame.global_position.y)
-	print(str("distance to target frame --> ", str(distanceToTarget)))
 	if (distanceToTarget < 0.1):
 		targetFrameReached()
 
-func targetFrameReached() -> void:
-	actualLiftAction = StackedLiftAction.IDLE_TOP
+func targetFrameReached() -> void:	
+	if actualLiftAction == StackedLiftAction.ASCENDING:
+		actualLiftAction = StackedLiftAction.IDLE_TOP
+	if actualLiftAction == StackedLiftAction.DESCENDING:
+		actualLiftAction = StackedLiftAction.IDLE_BOTTOM
+	
+func isMoving() -> bool:
+	return actualLiftAction == StackedLiftAction.ASCENDING or actualLiftAction == StackedLiftAction.DESCENDING

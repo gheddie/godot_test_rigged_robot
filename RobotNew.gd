@@ -2,6 +2,7 @@ class_name RobotNew
 extends CharacterBody3D
 
 const SPEED = 3.0
+
 const TURN_TRESHOLD = 0.01
 const TURN_SPEED = 75.0
 const CAMERA_TWEEN_SPEED = 0.75
@@ -19,6 +20,8 @@ var mouseMotion := Vector2.ZERO
 enum MoveActionNew {WALK, NONE, TURN}
 
 var actualMoveAction: MoveActionNew = MoveActionNew.NONE
+
+var navigationSequence: NavigationSequence
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -40,7 +43,9 @@ func _input(event: InputEvent) -> void:
 		
 func _process(_delta: float) -> void:
 	tweenCamera(_delta)
-	pass
+	# print("distance -> ", str(navigationSequence.evaluateTargetDistance(self)), " --> to point --> ", str(navigationSequence.nextPointToApproach))
+	# print("angle -> ", str(navigationSequence.evaluateTargetAngle(self)))
+	# print("---------")
 	
 func tweenCamera(_delta: float) -> void:
 	var tweenTarget: Node3D

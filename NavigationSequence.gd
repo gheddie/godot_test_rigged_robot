@@ -71,12 +71,18 @@ func bezier(startPoint: int):
 	var p0 = points[startPoint]
 	var p1 = points[startPoint+1]
 	var p2 = points[startPoint+2]
+	var p3 = points[startPoint+3]
+	var p4 = points[startPoint+4]
+	var p5 = points[startPoint+5]
 	
 	var t = 0.0
 	while t < 1.0:
 		t += 0.01
 		var q0 = p0.lerp(p1, t)
 		var q1 = p1.lerp(p2, t)
-		var r = q0.lerp(q1, t)
+		var q3 = p2.lerp(p3, t)
+		var q4 = p3.lerp(p4, t)
+		var q5 = p4.lerp(p5, t)
+		var r = q0.lerp(q5, t)
 		result.append(r)	
 	return result

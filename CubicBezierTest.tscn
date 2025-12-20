@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccpaduobjg3pt"]
+
+[ext_resource type="PackedScene" uid="uid://c8isqsvf6m5hf" path="res://CubicBezierTest.glb" id="1_hq7wm"]
+[ext_resource type="Script" uid="uid://c7otbbo0wf762" path="res://CubicBezierTest.gd" id="2_slq3v"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hq7wm"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_slq3v"]
+sky_material = SubResource("ProceduralSkyMaterial_hq7wm")
+
+[sub_resource type="Environment" id="Environment_pt1f6"]
+background_mode = 2
+sky = SubResource("Sky_slq3v")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="CubicBezierTest" instance=ExtResource("1_hq7wm")]
+script = ExtResource("2_slq3v")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
+environment = SubResource("Environment_pt1f6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1"]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="." index="10"]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 4.7000003, 11.700001)

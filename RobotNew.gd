@@ -1,7 +1,8 @@
 class_name RobotNew
 extends CharacterBody3D
 
-const SPEED = 3.0
+# const SPEED = 3.0
+const SPEED = 50.0
 
 const TURN_TRESHOLD = 0.01
 const TURN_SPEED = 75.0

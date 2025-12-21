@@ -52,8 +52,7 @@ func _ready() -> void:
 	print(str("diff --> ", str(liftMarker2.global_position.y - liftMarker1.global_position.y)))
 	StackedLift.new(liftMarker1.global_position, 164.08, false, 2.6, 25.0).renderInScene(self)
 		
-	navigationSequence = NavigationSequence.new(mountain, "NavMarker", true)	
-	navigationSequence.debug()
+	navigationSequence = NavigationSequence.new(mountain, "NavMarker", true, self)	
 	
 	var tmp = navigationSequence.bezier(1)
 	for a:Vector3 in tmp:
@@ -65,7 +64,7 @@ func _ready() -> void:
 	actualDrone = putDrone()
 	droneCamera = actualDrone.camera
 	
-	robot.navigationSequence = NavigationSequence.new(mountain, "ConeNav", true)	
+	robot.navigationSequence = NavigationSequence.new(mountain, "ConeNav", true, self)	
 
 func putDrone() -> Drone:
 	var drone: Drone = droneTemplate.instantiate()

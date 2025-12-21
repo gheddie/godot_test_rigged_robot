@@ -9,7 +9,8 @@ const SPEED = 50.0
 var navigationSequence: NavigationSequence
 
 func _process(delta: float) -> void:
-	print("distance -> ", str(navigationSequence.evaluateTargetDistance(self)), " --> to point --> ", str(navigationSequence.nextPointToApproach))
+	navigationSequence.evaluateTargetDistance(self)
+	# print("distance -> ", str(navigationSequence.evaluateTargetDistance(self)), " --> to point --> ", str(navigationSequence.nextPointToApproach))
 	var direction = global_position.direction_to(navigationSequence.getActualPoint())
 	if direction:
 		look_at_target(direction)

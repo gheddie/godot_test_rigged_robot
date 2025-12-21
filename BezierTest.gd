@@ -23,33 +23,31 @@ func _ready() -> void:
 	bezierifier.addPoint(m0.global_position)
 	
 	points.append(m1.global_position)
-	bezierifier.addPoint(m0.global_position)
+	bezierifier.addPoint(m1.global_position)
 	
 	points.append(m2.global_position)
-	bezierifier.addPoint(m0.global_position)
+	bezierifier.addPoint(m2.global_position)
 	
 	points.append(m3.global_position)
-	bezierifier.addPoint(m0.global_position)
+	bezierifier.addPoint(m3.global_position)
 	
 	points.append(m4.global_position)
-	bezierifier.addPoint(m0.global_position)
+	bezierifier.addPoint(m4.global_position)
 	
 	points.append(m5.global_position)
-	bezierifier.addPoint(m0.global_position)
+	bezierifier.addPoint(m5.global_position)
 	
 	points.append(m6.global_position)
-	bezierifier.addPoint(m0.global_position)
+	bezierifier.addPoint(m6.global_position)
 	
 	points.append(m7.global_position)
-	bezierifier.addPoint(m0.global_position)
+	bezierifier.addPoint(m7.global_position)
 	
 	var resultPoints = bezierifier.bakePoints(1.0)
-	"""
 	for n in resultPoints:
 		markIt(n, 0.0)
-		"""
 	
-	testSampleBaked()
+	# testSampleBaked()
 
 func testSampleBaked() -> void:
 	var curve: Curve3D = Curve3D.new()

@@ -6,14 +6,29 @@ var prefix: String
 
 var points: Dictionary[int, Vector3] = {}
 
-const APPROACH_TRESHOLD = 5.0
+const APPROACH_TRESHOLD = 1.0
 
 var nextPointToApproach: int = 1
 
-func _init(aNode: Node3D, aPrefix: String) -> void:
+var bezierifier: Bezierifier
+
+var bezierPoints = []
+
+func _init(aNode: Node3D, aPrefix: String, bezierPath: bool) -> void:
 	node = aNode
 	prefix = aPrefix
+	bezierifier = Bezierifier.new(100.0)
 	extractPoints()
+	if bezierPath:
+		bezierPoints = bezierifier.bakePoints()
+		convertPointsToBezier()
+		
+func convertPointsToBezier() -> void:
+	points.clear()
+	var order: int = 0
+	for bp in bezierPoints:
+		points.set(order, bp)
+		order += 1
 	
 func extractPoints() -> void:
 	for element in node.get_children(true):		
@@ -22,6 +37,7 @@ func extractPoints() -> void:
 				var order: int = extractOrder(element.name)
 				print(str(element.name), " --> " , str(order))
 				points.set(order, element.global_position)
+				bezierifier.addPoint(element.global_position)
 	print(str("extracted (", str(points.size()), ") points for prefix -->", prefix))
 
 func debug() -> void:
@@ -35,15 +51,7 @@ func extractOrder(elementName: String) -> int:
 
 func getPosition(index: int) -> Vector3:
 	return points.get(index)
-
-func checkPointApproach(aPosition: Vector3) -> void:
-	for key in points:
-		var point: Vector3 = points[key]
-		# print(point)
-		if (aPosition.distance_to(point) <= APPROACH_TRESHOLD):
-			print(key)
-			pass
-			
+	
 func getActualPoint() -> Vector3:
 	return points[nextPointToApproach]
 			

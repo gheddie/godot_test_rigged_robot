@@ -4142,7 +4142,7 @@ bones/2/parent = 0
 bones/2/rest = Transform3D(0.9960151, 0.089183524, -0.00050587504, -0.08918351, 0.995951, -0.011323128, -0.0005060097, 0.011323123, 0.99993575, 2.0954758e-09, 4.1807747, 0)
 bones/2/enabled = true
 bones/2/position = Vector3(2.0954758e-09, 4.1807747, 0)
-bones/2/rotation = Quaternion(0.0033231361, -0.052289087, -0.04487241, 0.9976179)
+bones/2/rotation = Quaternion(0.005681675, 0.00032168563, -0.044635136, 0.99898726)
 bones/2/scale = Vector3(0.99999994, 1.0000001, 0.99999994)
 bones/3/name = "arm.l"
 bones/3/parent = 0
@@ -4294,7 +4294,7 @@ mesh = SubResource("ArrayMesh_nn6gp")
 skeleton = NodePath("")
 
 [node name="head" type="BoneAttachment3D" parent="TestRiggedRobot/Armature/Skeleton3D"]
-transform = Transform3D(0.99988866, -1.6880222e-08, -0.014917634, 2.8871e-08, 1.0000001, 5.5879354e-08, 0.0149176195, -5.4948032e-08, 0.9998886, -0.60950375, 1.2303402, -3.054454)
+transform = Transform3D(0.9959114, -1.2805685e-09, 0.09033456, 1.0284566e-08, 1, 4.749745e-08, -0.090334564, -4.749745e-08, 0.9959113, -0.60950375, 1.2303402, -3.054454)
 bone_name = "head"
 bone_idx = 2
 

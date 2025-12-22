@@ -1,3 +1,4 @@
+class_name TerrainSandbox
 extends Node3D
 
 @onready var robot: RobotNew = $Robot
@@ -46,29 +47,22 @@ func switchCamera(mode: CameraMode) -> void:
 
 func _ready() -> void:	
 	
+	PlayerAccessInstance.registerPointCloud(mountain, "NavMarker", PointCloud.DEFAULT)
+	
 	actualCameraMode = CameraMode.ROBOT
 	
 	PlayerAccessInstance.player = robot
 	print(str("diff --> ", str(liftMarker2.global_position.y - liftMarker1.global_position.y)))
 	StackedLift.new(liftMarker1.global_position, 164.08, false, 2.6, 25.0).renderInScene(self)
 		
-	navigationSequence = NavigationSequence.new(mountain, "NavMarker", true, self)	
-	
-	var tmp = navigationSequence.bezier(1)
-	for a:Vector3 in tmp:
-		var marker = markerTemplate.instantiate()
-		marker.global_position = a
-		add_child(marker)
-		pass
+	navigationSequence = NavigationSequence.new(mountain, "NavMarker", true, self, PointCloud.DEFAULT)	
 	
 	actualDrone = putDrone()
 	droneCamera = actualDrone.camera
-	
-	robot.navigationSequence = NavigationSequence.new(mountain, "ConeNav", true, self)	
 
 func putDrone() -> Drone:
 	var drone: Drone = droneTemplate.instantiate()
 	drone.global_position = navigationSequence.getPosition(1)
-	drone.navigationSequence = navigationSequence
+	drone.navigationSequence = navigationSequence	
 	add_child(drone)
 	return drone

@@ -18,6 +18,8 @@ var mouseMotion := Vector2.ZERO
 @onready var backPosRightCameraPivot: Node3D = $TestRiggedRobot/Armature/Skeleton3D/spine/Body/BackPosRightCameraPivot
 @onready var rightShoulderCameraPivot: Node3D = $TestRiggedRobot/Armature/Skeleton3D/spine/Body/RightShoulderCameraPivot
 
+@onready var headPoint: Node3D = $TestRiggedRobot/Armature/Skeleton3D/head/Cube
+
 enum MoveActionNew {WALK, NONE, TURN}
 
 var actualMoveAction: MoveActionNew = MoveActionNew.NONE

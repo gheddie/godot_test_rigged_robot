@@ -4,7 +4,6 @@ extends Node3D
 const APPROACH_TRESHOLD = 1.0
 
 var node: Node3D
-var prefix: String
 var points: Dictionary[int, Vector3] = {}
 var nextPointToApproach: int = 1
 var bezierifier: Bezierifier
@@ -12,16 +11,15 @@ var bezierPoints = []
 var renderContext: Node3D
 var pointCloudIdentifier: String
 var pointCloud: PointCloud
+var drone: Drone
 
 var markerTemplate: PackedScene = preload("res://PathMarker.tscn")	
 
-func _init(aNode: Node3D, aPrefix: String, bezierPath: bool, aRenderContext:Node3D, aPointCloudIdentifier: String) -> void:
-	node = aNode
-	prefix = aPrefix
-	bezierifier = Bezierifier.new(100.0)
+func _init(bezierPath: bool, aRenderContext:Node3D, aPointCloudIdentifier: String) -> void:
+	bezierifier = Bezierifier.new()
 	renderContext = aRenderContext
 	pointCloudIdentifier = aPointCloudIdentifier
-	pointCloud = PlayerAccessInstance.getPointCloud(pointCloudIdentifier)
+	pointCloud = GameSingletonInstance.getPointCloud(pointCloudIdentifier)
 	extractPoints()
 	if bezierPath:
 		bezierPoints = bezierifier.bakePoints()
@@ -36,9 +34,10 @@ func convertPointsToBezier() -> void:
 		order += 1
 		
 func markInRenderContext(point: Vector3) -> void:
-	var marker = markerTemplate.instantiate()
-	marker.global_position = point
-	renderContext.add_child(marker)
+	# var marker = markerTemplate.instantiate()
+	# marker.global_position = point
+	# renderContext.add_child(marker)
+	pass
 	
 func extractPoints() -> void:
 	var pointOrder: int = 0
@@ -49,16 +48,13 @@ func extractPoints() -> void:
 		bezierifier.addPoint(point)
 		pointOrder += 1
 
-func extractOrder(elementName: String) -> int:
-	var tmp: String = elementName.replace(prefix, "")
-	return int(tmp)
-
 func getPosition(index: int) -> Vector3:
 	return points.get(index)
 	
 func getActualPoint() -> Vector3:
 	if nextPointToApproach >= points.size():
 		# reset to beginning
+		drone.onNavigationFinished()
 		nextPointToApproach = 0
 	return points[nextPointToApproach]
 			
@@ -70,3 +66,6 @@ func evaluateTargetDistance(follower: Node3D) -> float:
 		else:
 			nextPointToApproach = 1
 	return evaluatedTargetDistance
+
+func getStartPoint() -> Vector3:
+	return points[0]

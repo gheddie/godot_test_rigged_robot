@@ -47,3 +47,8 @@ func randomizePoints():
 	for pKey in tmpPoints:
 		result.append(tmpPoints[pKey])
 	return result
+
+func getRandomPoint() -> Vector3:
+	var keys = points.keys()
+	var randomKey = keys[randi_range(0,keys.size()-1)]
+	return points[randomKey]

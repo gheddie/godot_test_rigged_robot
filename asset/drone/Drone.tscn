@@ -7,7 +7,17 @@
 script = ExtResource("1_0b83f")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, -2.1855694e-08, 8.156656e-08, 2.1855694e-08, 0.8660254, 0.5, -8.156656e-08, 0.5, -0.8660254, -8.940697e-08, 2.3000002, -3)
+transform = Transform3D(-1, -2.1855694e-08, 8.156656e-08, 2.1855694e-08, 0.8660254, 0.5, -8.156656e-08, 0.5, -0.8660254, -8.940697e-08, 1.1000001, -1.9)
 
 [node name="Drone" parent="." instance=ExtResource("1_43yun")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Fire" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Fire"
+
+[connection signal="pressed" from="GridContainer/Fire" to="." method="fire"]

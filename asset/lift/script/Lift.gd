@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 			platform.global_position.y -= VERTICAL_SPEED * delta
 	
 func _process(delta: float) -> void:
-	if platform.global_position.distance_to(PlayerAccessInstance.player.global_position) < 5.0:
+	if platform.global_position.distance_to(GameSingletonInstance.player.global_position) < 5.0:
 		invokeLevel += 1
 	else:
 		if invokeLevel > 0:

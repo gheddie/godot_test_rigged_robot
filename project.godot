@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-PlayerAccessInstance="*res://PlayerAccess.gd"
+GameSingletonInstance="*res://script/autoload/GameSingleton.gd"
 
 [input]
 

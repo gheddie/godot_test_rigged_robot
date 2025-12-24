@@ -15,7 +15,7 @@ var droneCamera: Camera3D
 
 var navigationSequence: NavigationSequence
 
-var actualDrone: Drone
+@onready var actualDrone: Drone = $Drone
 
 enum CameraMode {ROBOT, DRONE}
 var actualCameraMode: CameraMode
@@ -30,9 +30,11 @@ func _process(delta: float) -> void:
 func checkSwitchCamera() -> void:	
 	if Input.is_action_just_released("cameraMode"):
 		if actualCameraMode == CameraMode.ROBOT:
-			switchCamera(CameraMode.DRONE)			
+			switchCamera(CameraMode.DRONE)
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			switchCamera(CameraMode.ROBOT)
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func switchCamera(mode: CameraMode) -> void:	
 	actualCameraMode = mode
@@ -46,23 +48,12 @@ func switchCamera(mode: CameraMode) -> void:
 			droneCamera.current= true
 
 func _ready() -> void:	
-	
-	PlayerAccessInstance.registerPointCloud(mountain, "NavMarker", PointCloud.DEFAULT)
-	
+	GameSingletonInstance.registerPointCloud(mountain, "NavMarker", PointCloud.DEFAULT)
 	actualCameraMode = CameraMode.ROBOT
-	
-	PlayerAccessInstance.player = robot
+	GameSingletonInstance.player = robot
+	GameSingletonInstance.actualScene = self
 	print(str("diff --> ", str(liftMarker2.global_position.y - liftMarker1.global_position.y)))
 	StackedLift.new(liftMarker1.global_position, 164.08, false, 2.6, 25.0).renderInScene(self)
-		
-	navigationSequence = NavigationSequence.new(mountain, "NavMarker", true, self, PointCloud.DEFAULT)	
-	
-	actualDrone = putDrone()
+	actualDrone = GameSingletonInstance.makeDrone(self)
+	add_child(actualDrone)	
 	droneCamera = actualDrone.camera
-
-func putDrone() -> Drone:
-	var drone: Drone = droneTemplate.instantiate()
-	drone.global_position = navigationSequence.getPosition(1)
-	drone.navigationSequence = navigationSequence	
-	add_child(drone)
-	return drone

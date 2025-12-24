@@ -10,7 +10,7 @@ var lift: StackedLift
 
 func _process(delta: float) -> void:
 	lift.onProcess(delta)
-	var distance: float = global_position.distance_to(PlayerAccessInstance.player.global_position)
+	var distance: float = global_position.distance_to(GameSingletonInstance.player.global_position)
 	if distance <= TRIGGER_DISTANCE and !lift.isMoving():
 		invokementValue += 1.0
 	else:

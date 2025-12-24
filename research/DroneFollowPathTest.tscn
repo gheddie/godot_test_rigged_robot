@@ -1,0 +1,91 @@
+[gd_scene load_steps=11 format=3 uid="uid://dht4tolhy6nhr"]
+
+[ext_resource type="PackedScene" uid="uid://bynkalxmmsbvc" path="res://research/FollowPathDrone.tscn" id="1_vb7on"]
+[ext_resource type="PackedScene" uid="uid://c0h8paxdnousm" path="res://PalmTree.tscn" id="2_jnsmh"]
+[ext_resource type="Script" uid="uid://bs2ksrnki6ixr" path="res://research/PathFollow3d.gd" id="2_v3ob6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7qulr"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_vb7on"]
+sky_material = SubResource("ProceduralSkyMaterial_7qulr")
+
+[sub_resource type="Environment" id="Environment_jnsmh"]
+background_mode = 2
+sky = SubResource("Sky_vb7on")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vb7on"]
+albedo_color = Color(0.38039216, 0.3764706, 0.7372549, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vb7on"]
+size = Vector3(500, 1, 500)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jnsmh"]
+data = PackedVector3Array(-250, 0.5, 250, 250, 0.5, 250, -250, -0.5, 250, 250, 0.5, 250, 250, -0.5, 250, -250, -0.5, 250, 250, 0.5, -250, -250, 0.5, -250, 250, -0.5, -250, -250, 0.5, -250, -250, -0.5, -250, 250, -0.5, -250, 250, 0.5, 250, 250, 0.5, -250, 250, -0.5, 250, 250, 0.5, -250, 250, -0.5, -250, 250, -0.5, 250, -250, 0.5, -250, -250, 0.5, 250, -250, -0.5, -250, -250, 0.5, 250, -250, -0.5, 250, -250, -0.5, -250, 250, 0.5, 250, -250, 0.5, 250, 250, 0.5, -250, -250, 0.5, 250, -250, 0.5, -250, 250, 0.5, -250, -250, -0.5, 250, 250, -0.5, 250, -250, -0.5, -250, 250, -0.5, 250, 250, -0.5, -250, -250, -0.5, -250)
+
+[sub_resource type="Curve3D" id="Curve3D_jnsmh"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -200, 8, 0, 0, 0, 0, 0, 0, 0, -200, 8, 100, 0, 0, 0, 0, 0, 0, -100, 8, 200, 0, 0, 0, 0, 0, 0, 0, 8, 200),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="DroneFollowPathTest" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jnsmh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+material_override = SubResource("StandardMaterial3D_vb7on")
+mesh = SubResource("BoxMesh_vb7on")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("ConcavePolygonShape3D_jnsmh")
+
+[node name="Trees" type="Node3D" parent="."]
+
+[node name="PalmTree1" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, -0.49999994, -60)
+
+[node name="PalmTree8" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, -0.5, -90)
+
+[node name="PalmTree2" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -0.49999994, -100)
+
+[node name="PalmTree7" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120, -0.49999994, -120)
+
+[node name="PalmTree3" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90, -0.5, -10)
+
+[node name="PalmTree4" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, -0.5, 60)
+
+[node name="PalmTree5" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, -0.5, 30)
+
+[node name="PalmTree6" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -0.5, 100)
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_jnsmh")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(-0.9999997, 0, -8.742277e-08, 0, 1, 0, 8.742275e-08, 0, -0.9999999, -200, 8, 0)
+script = ExtResource("2_v3ob6")
+
+[node name="Drone" parent="Path3D/PathFollow3D" instance=ExtResource("1_vb7on")]
+transform = Transform3D(-0.24967304, 0.052212942, 0.9669218, -0.037587713, 0.99727, -0.063557394, -0.9676006, -0.052212927, -0.24702862, 24.017502, 5.2695236, 27.83223)

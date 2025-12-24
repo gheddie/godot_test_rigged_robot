@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cx7x16xh34vun"]
+[gd_scene load_steps=4 format=3 uid="uid://cx7x16xh34vun"]
 
 [ext_resource type="Script" uid="uid://qyqjridoorl2" path="res://asset/drone/Drone.gd" id="1_0b83f"]
 [ext_resource type="PackedScene" uid="uid://cshp07xgtwqk" path="res://asset/drone/Drone.glb" id="1_43yun"]
+[ext_resource type="PackedScene" uid="uid://b28883c7xh5m" path="res://DroneWeapon.tscn" id="3_c4xqh"]
 
 [node name="Drone" type="CharacterBody3D"]
 script = ExtResource("1_0b83f")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, -2.1855694e-08, 8.156656e-08, 2.1855694e-08, 0.8660254, 0.5, -8.156656e-08, 0.5, -0.8660254, -8.940697e-08, 1.1000001, -1.9)
+transform = Transform3D(-1, -2.1855694e-08, 8.156656e-08, 2.1855694e-08, 0.8660254, 0.5, -8.156656e-08, 0.5, -0.8660254, -8.940697e-08, 0.90000015, -1.9)
 
 [node name="Drone" parent="." instance=ExtResource("1_43yun")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
@@ -19,5 +20,11 @@ offset_bottom = 40.0
 [node name="Fire" type="Button" parent="GridContainer"]
 layout_mode = 2
 text = "Fire"
+
+[node name="Weapon1" parent="." instance=ExtResource("3_c4xqh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.7, -0.099999964, -0.2)
+
+[node name="Weapon2" parent="." instance=ExtResource("3_c4xqh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.7, -0.099999964, -0.2)
 
 [connection signal="pressed" from="GridContainer/Fire" to="." method="fire"]

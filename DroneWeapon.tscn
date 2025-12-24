@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b28883c7xh5m"]
+
+[ext_resource type="PackedScene" uid="uid://cryip15ygikmf" path="res://asset/drone/DroneWeapon.glb" id="1_n2fhb"]
+
+[node name="DroneWeapon" instance=ExtResource("1_n2fhb")]

@@ -28,21 +28,13 @@ data = PackedVector3Array(-250, 0.5, 250, 250, 0.5, 250, -250, -0.5, 250, 250, 0
 
 [sub_resource type="Curve3D" id="Curve3D_jnsmh"]
 closed = true
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -200, 40, 0, 0, 0, 0, 0, 0, 0, -200, 40, 100, 0, 0, 0, 0, 0, 0, -140, 40, 200, 0, 0, 0, 0, 0, 0, 100, 40, 160, 0, 0, 0, 0, 0, 0, 190, 40, 80, 0, 0, 0, 0, 0, 0, 190, 40, -60, 0, 0, 0, 0, 0, 0, 150, 40, -180, 0, 0, 0, 0, 0, 0, -20, 40, -200, 0, 0, 0, 0, 0, 0, -140, 40, -200, 0, 0, 0, 0, 0, 0, -190, 40, -120),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-}
-point_count = 10
+bake_interval = 1.0
 
 [node name="DroneFollowPathTest" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jnsmh")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -56,64 +48,36 @@ shape = SubResource("ConcavePolygonShape3D_jnsmh")
 
 [node name="Trees" type="Node3D" parent="."]
 
-[node name="PalmTree1" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, -0.49999994, 80)
-
-[node name="PalmTree8" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, -0.5, -60)
-
-[node name="PalmTree13" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.5, -20)
-
-[node name="PalmTree14" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -0.5, 0)
-
-[node name="PalmTree15" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.5, 10)
-
-[node name="PalmTree16" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -0.5, -10)
-
-[node name="PalmTree17" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -0.5, 20)
-
-[node name="PalmTree2" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160, -0.49999994, -180)
-
-[node name="PalmTree7" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.49999994, -200)
-
-[node name="PalmTree9" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -130, -0.49999994, -200)
-
-[node name="PalmTree10" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -180, -0.49999994, -100)
-
-[node name="PalmTree11" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -160, -0.49999994, -120)
-
-[node name="PalmTree12" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, -0.49999994, -120)
-
-[node name="PalmTree3" parent="Trees" instance=ExtResource("2_jnsmh")]
+[node name="T1" parent="Trees" instance=ExtResource("2_jnsmh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190, -0.5, 0)
 
-[node name="PalmTree4" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190, -0.5, 100)
+[node name="T2" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, -0.5, 110)
 
-[node name="PalmTree5" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110, -0.5, 160)
+[node name="T3" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, -0.5, 160)
 
-[node name="PalmTree6" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -130, -0.5, 200)
+[node name="T4" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, -0.5, 30)
+
+[node name="T5" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, -0.5, -110)
+
+[node name="T6" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, -0.5, -140)
 
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
 curve = SubResource("Curve3D_jnsmh")
+debug_custom_color = Color(0, 0.73333335, 0, 1)
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.9999997, 0, -8.742277e-08, 0, 0.99999994, 0, 8.742275e-08, 0, -0.9999999, -200, 40, 0)
+transform = Transform3D(-0.84799385, 0, 0.5299956, 0, 0.9999972, 0, -0.5299963, 0, -0.8479928, -140, 40, -200)
+rotation_mode = 4
+use_model_front = true
+cubic_interp = false
+loop = false
 script = ExtResource("2_v3ob6")
 
-[node name="Drone" parent="Path3D/PathFollow3D" instance=ExtResource("1_vb7on")]
-transform = Transform3D(-0.24967304, 0.052212942, 0.9669218, -0.037587713, 0.99727, -0.063557394, -0.9676006, -0.052212927, -0.24702862, 24.017502, 5.2695236, 27.83223)
+[node name="FollowPathDrone" parent="Path3D/PathFollow3D" instance=ExtResource("1_vb7on")]
+transform = Transform3D(-0.49999985, 0, 0.8660253, 0, 0.99999994, 0, -0.8660252, 0, -0.49999988, 0, 0, 0)

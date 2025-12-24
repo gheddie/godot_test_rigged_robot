@@ -27,6 +27,7 @@ size = Vector3(500, 1, 500)
 data = PackedVector3Array(-250, 0.5, 250, 250, 0.5, 250, -250, -0.5, 250, 250, 0.5, 250, 250, -0.5, 250, -250, -0.5, 250, 250, 0.5, -250, -250, 0.5, -250, 250, -0.5, -250, -250, 0.5, -250, -250, -0.5, -250, 250, -0.5, -250, 250, 0.5, 250, 250, 0.5, -250, 250, -0.5, 250, 250, 0.5, -250, 250, -0.5, -250, 250, -0.5, 250, -250, 0.5, -250, -250, 0.5, 250, -250, -0.5, -250, -250, 0.5, 250, -250, -0.5, 250, -250, -0.5, -250, 250, 0.5, 250, -250, 0.5, 250, 250, 0.5, -250, -250, 0.5, 250, -250, 0.5, -250, 250, 0.5, -250, -250, -0.5, 250, 250, -0.5, 250, -250, -0.5, -250, 250, -0.5, 250, 250, -0.5, -250, -250, -0.5, -250)
 
 [sub_resource type="Curve3D" id="Curve3D_jnsmh"]
+closed = true
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, -200, 40, 0, 0, 0, 0, 0, 0, 0, -200, 40, 100, 0, 0, 0, 0, 0, 0, -140, 40, 200, 0, 0, 0, 0, 0, 0, 100, 40, 160, 0, 0, 0, 0, 0, 0, 190, 40, 80, 0, 0, 0, 0, 0, 0, 190, 40, -60, 0, 0, 0, 0, 0, 0, 150, 40, -180, 0, 0, 0, 0, 0, 0, -20, 40, -200, 0, 0, 0, 0, 0, 0, -140, 40, -200, 0, 0, 0, 0, 0, 0, -190, 40, -120),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -56,28 +57,55 @@ shape = SubResource("ConcavePolygonShape3D_jnsmh")
 [node name="Trees" type="Node3D" parent="."]
 
 [node name="PalmTree1" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, -0.49999994, -60)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, -0.49999994, 80)
 
 [node name="PalmTree8" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, -0.5, -90)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, -0.5, -60)
+
+[node name="PalmTree13" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.5, -20)
+
+[node name="PalmTree14" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -0.5, 0)
+
+[node name="PalmTree15" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.5, 10)
+
+[node name="PalmTree16" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -0.5, -10)
+
+[node name="PalmTree17" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -0.5, 20)
 
 [node name="PalmTree2" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -0.49999994, -100)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160, -0.49999994, -180)
 
 [node name="PalmTree7" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120, -0.49999994, -120)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.49999994, -200)
+
+[node name="PalmTree9" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -130, -0.49999994, -200)
+
+[node name="PalmTree10" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -180, -0.49999994, -100)
+
+[node name="PalmTree11" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -160, -0.49999994, -120)
+
+[node name="PalmTree12" parent="Trees" instance=ExtResource("2_jnsmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200, -0.49999994, -120)
 
 [node name="PalmTree3" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90, -0.5, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190, -0.5, 0)
 
 [node name="PalmTree4" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, -0.5, 60)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190, -0.5, 100)
 
 [node name="PalmTree5" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, -0.5, 30)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110, -0.5, 160)
 
 [node name="PalmTree6" parent="Trees" instance=ExtResource("2_jnsmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -0.5, 100)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -130, -0.5, 200)
 
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)

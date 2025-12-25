@@ -21,6 +21,9 @@ var action: DroneAction = DroneAction.CRUISE
 
 @onready var fireTimer: Timer = $FireTimer
 
+@onready var weapon1: DroneWeapon = $Weapon1
+@onready var weapon2: DroneWeapon = $Weapon2
+
 func _ready() -> void:
 	randomizeTarget()
 	
@@ -94,6 +97,8 @@ func look_at_target(direction: Vector3) -> void:
 
 func fire() -> void:
 	print("fire...")
+	weapon1.fire()
+	weapon2.fire()
 
 func attack() -> void:
 	print("attack...")

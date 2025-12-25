@@ -1,7 +1,7 @@
 class_name Robot
 extends CharacterBody3D
 
-const WALK_SPEED = 10.0
+const WALK_SPEED = 50.0
 const CAMERA_TWEEN_SPEED = 0.75
 
 enum MoveAction {WALK_FORWARD, WALK_BACKWARD, NONE, TURN_LEFT, TURN_RIGHT}

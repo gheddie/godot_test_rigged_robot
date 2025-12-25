@@ -1,9 +1,11 @@
 class_name Drone
 extends CharacterBody3D
 
-const SPEED = 50.0
+# const SPEED = 50.0
+const SPEED = 10.0
+
 const TARGET_APPROACH_TRESHOLD = 10.0
-const PROVOKE_DISTANCE = 250.0
+const ATTACK_DISTANCE = 100.0
 
 @onready var camera: Camera3D = $Camera3D
 
@@ -15,28 +17,55 @@ var targetPoint: Vector3
 
 var action: DroneAction = DroneAction.CRUISE
 
+@onready var stateLabel: Label = $GridContainer/StateLabel
+
+@onready var fireTimer: Timer = $FireTimer
+
 func _ready() -> void:
 	randomizeTarget()
 	
-func opponentInReach() -> bool:
+func opponentInAttackDistance() -> bool:
 	var opponentDistance = global_position.distance_to(GameSingletonInstance.player.global_position)
 	print(opponentDistance)
-	return opponentDistance <= PROVOKE_DISTANCE
+	return opponentDistance <= ATTACK_DISTANCE
 		
 func randomizeTarget() -> void:
 	targetPoint = GameSingletonInstance.getRandomPoint()
 
-func _process(delta: float) -> void:	
+func _process(delta: float) -> void:
+	checkFireTimer()
+	updateStateLabel()
+	if action == DroneAction.ATTACK:
+		if opponentInAttackDistance():
+			print(str("dist to player (PEW PEW) --> ", str(global_position.distance_to(GameSingletonInstance.player.global_position))))
+		else:
+			print(str("dist to player --> ", str(global_position.distance_to(GameSingletonInstance.player.global_position))))
 	"""
 	if opponentInReach():
 		targetPoint = GameSingletonInstance.player.global_position
 	"""		
 	var dist = global_position.distance_to(targetPoint)
 	if dist <= TARGET_APPROACH_TRESHOLD:
-		# action = DroneAction.CRUISE
+		action = DroneAction.CRUISE
 		randomizeTarget()
+		
+func checkFireTimer() -> void:
+	if fireTimer.is_stopped():
+		fireTimer.start()
+		
+func updateStateLabel() -> void:
+	match action:
+		DroneAction.CRUISE:
+			stateLabel.text = "cruising"
+		DroneAction.ATTACK:
+			stateLabel.text = "attacking"
 	
 func _physics_process(delta: float) -> void:
+	if action == DroneAction.ATTACK:
+		var directionToPlayer = global_position.direction_to(GameSingletonInstance.player.global_position)
+		# print(str("dir to player --> ", str(directionToPlayer)))
+		# tween rotation to player
+		# create_tween().tween_property(self, "global_rotation", directionToPlayer, 5.0)
 	moveAndTurnToTarget()	
 		
 	
@@ -63,6 +92,15 @@ func look_at_target(direction: Vector3) -> void:
 	var adjusted_direction = direction
 	look_at(global_position + adjusted_direction, Vector3.UP, true)
 
-
 func fire() -> void:
 	print("fire...")
+
+func attack() -> void:
+	print("attack...")
+	action = DroneAction.ATTACK
+	targetPoint = GameSingletonInstance.player.global_position
+
+
+func onFireTimer() -> void:
+	if action == DroneAction.ATTACK && opponentInAttackDistance():
+		fire()

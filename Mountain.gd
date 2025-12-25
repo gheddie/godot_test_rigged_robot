@@ -25,7 +25,7 @@ func investigateMesh(meshInstance: MeshInstance3D) -> void:
 	var faces: PackedVector3Array = tri.get_faces()
 	print(str(faces.size()), str(" tri surfaces..."))
 	for n in range(0,faces.size(),3):
-		markFace(TriFace.new(faces.get(n),faces.get(n+1),faces.get(n+2)), st, material, true, true)
+		markFace(TriFace.new(faces.get(n),faces.get(n+1),faces.get(n+2)), st, material, false, true)
 
 func generateMaterial() -> StandardMaterial3D:
 	var material = StandardMaterial3D.new()
@@ -34,21 +34,18 @@ func generateMaterial() -> StandardMaterial3D:
 		
 func markFace(face: TriFace, tool: SurfaceTool,
 	material: StandardMaterial3D, putMarker: bool, putFace: bool) -> void:
-	
-	var center: Vector3 = face.calculateCenter()
-	
 	if putFace:
 		putFace(tool, face, material)
 	if putMarker:
-		putMarker(center)
+		putMarker(face)
 	
-func putMarker(pos: Vector3) -> void:
+func putMarker(face: TriFace) -> void:
 	var marker = markerTemplateEnhanced.instantiate()
-	marker.global_position = pos
+	marker.global_position = face.calculateCenter()
 	add_child(marker)
 	
 func putFace(tool: SurfaceTool, face: TriFace, material: StandardMaterial3D) -> void:
-	tool.begin(Mesh.PRIMITIVE_TRIANGLES)
+	tool.begin(Mesh.PRIMITIVE_LINE_STRIP)
 	tool.add_vertex(face.point1)
 	tool.add_vertex(face.point2)
 	tool.add_vertex(face.point3)	

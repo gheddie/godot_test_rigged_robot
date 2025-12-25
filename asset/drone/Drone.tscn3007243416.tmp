@@ -34,8 +34,5 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.7,
 [node name="Weapon2" parent="." instance=ExtResource("3_c4xqh")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.7, -0.099999964, -0.2)
 
-[node name="FireTimer" type="Timer" parent="."]
-
 [connection signal="pressed" from="GridContainer/Fire" to="." method="fire"]
 [connection signal="pressed" from="GridContainer/Attack" to="." method="attack"]
-[connection signal="timeout" from="FireTimer" to="." method="onFireTimer"]

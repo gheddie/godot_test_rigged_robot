@@ -103,7 +103,7 @@ func fire() -> void:
 func attack() -> void:
 	print("attack...")
 	action = DroneAction.ATTACK
-	targetPoint = GameSingletonInstance.player.global_position
+	targetPoint = GameSingletonInstance.getPlayerPosition()
 
 
 func onFireTimer() -> void:

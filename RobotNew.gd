@@ -26,6 +26,8 @@ var actualMoveAction: MoveActionNew = MoveActionNew.NONE
 
 var navigationSequence: NavigationSequence
 
+@onready var head: MeshInstance3D = $TestRiggedRobot/Armature/Skeleton3D/head/Cube
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	

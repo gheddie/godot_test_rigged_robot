@@ -38,3 +38,6 @@ func drawMarkerInActualScene(position: Vector3, enhanced: bool) -> void:
 		var marker = markerTemplate.instantiate()
 		marker.global_position = position
 		actualScene.add_child(marker)
+
+func getPlayerPosition() -> Vector3:
+	return player.head.global_position

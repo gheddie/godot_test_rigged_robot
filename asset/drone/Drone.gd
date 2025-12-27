@@ -13,11 +13,14 @@ enum DroneAction {CRUISE, ATTACK}
 
 var navigationPath: NavigationPath
 var provoked: bool = false
-var targetPoint: Vector3
+
+var navigationTargetPoint: Vector3
+var projectedTarget: Node3D
 
 var action: DroneAction = DroneAction.CRUISE
 
 @onready var stateLabel: Label = $GridContainer/StateLabel
+@onready var distanceLabel: Label = $GridContainer/DistanceLabel
 
 @onready var fireTimer: Timer = $FireTimer
 
@@ -25,6 +28,7 @@ var action: DroneAction = DroneAction.CRUISE
 @onready var weapon2: DroneWeapon = $Weapon2
 
 func _ready() -> void:
+	projectedTarget = GameSingletonInstance.player
 	randomizeTarget()
 	
 func opponentInAttackDistance() -> bool:
@@ -33,9 +37,11 @@ func opponentInAttackDistance() -> bool:
 	return opponentDistance <= ATTACK_DISTANCE
 		
 func randomizeTarget() -> void:
-	targetPoint = GameSingletonInstance.getRandomPoint()
+	# navigationTargetPoint = GameSingletonInstance.getRandomPoint()
+	pass
 
 func _process(delta: float) -> void:
+	updateNavigationTarget()
 	checkFireTimer()
 	updateStateLabel()
 	if action == DroneAction.ATTACK:
@@ -47,10 +53,20 @@ func _process(delta: float) -> void:
 	if opponentInReach():
 		targetPoint = GameSingletonInstance.player.global_position
 	"""		
-	var dist = global_position.distance_to(targetPoint)
+	var dist = global_position.distance_to(navigationTargetPoint)
 	if dist <= TARGET_APPROACH_TRESHOLD:
 		action = DroneAction.CRUISE
 		randomizeTarget()
+	updateDistanceLabel()
+	
+func updateDistanceLabel() -> void:
+	var labelText: String = ""
+	var distance: float = global_position.distance_to(projectedTarget.global_position)
+	if projectedTarget is RobotNew:
+		labelText = str(str("robot --> ") + str(distance))
+	else:
+		labelText = str(str("other --> ") + str(distance))
+	distanceLabel.text = labelText
 		
 func checkFireTimer() -> void:
 	if fireTimer.is_stopped():
@@ -79,13 +95,15 @@ func handleEnemyApproach() -> void:
 		randomizeTarget()
 	
 func moveAndTurnToTarget() -> void:		
-	var direction = global_position.direction_to(targetPoint)
+	var direction = global_position.direction_to(navigationTargetPoint)
 	if direction:
+		# print("LAT")
 		look_at_target(direction)
 		velocity.x = direction.x * SPEED
 		velocity.y = direction.y * SPEED
 		velocity.z = direction.z * SPEED
 	else:
+		# print("MTO")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)		
@@ -99,13 +117,21 @@ func fire() -> void:
 	print("fire...")
 	weapon1.fire()
 	weapon2.fire()
+	
+func updateNavigationTarget() -> void:
+	navigationTargetPoint = projectedTarget.global_position
 
 func attack() -> void:
 	print("attack...")
 	action = DroneAction.ATTACK
-	targetPoint = GameSingletonInstance.getPlayerPosition()
-
+	navigationTargetPoint = GameSingletonInstance.getPlayerPosition()
 
 func onFireTimer() -> void:
 	if action == DroneAction.ATTACK && opponentInAttackDistance():
 		fire()
+
+func toRobotPressed() -> void:
+	print("toRobotPressed")
+
+func toRandomPressed() -> void:
+	print("toRandomPressed")

@@ -21,12 +21,19 @@ offset_bottom = 40.0
 layout_mode = 2
 text = "Fire"
 
-[node name="Attack" type="Button" parent="GridContainer"]
-layout_mode = 2
-text = "Attack"
-
 [node name="StateLabel" type="Label" parent="GridContainer"]
 layout_mode = 2
+
+[node name="DistanceLabel" type="Label" parent="GridContainer"]
+layout_mode = 2
+
+[node name="ToRobot" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "To Robot"
+
+[node name="ToRandom" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "To Random"
 
 [node name="Weapon1" parent="." instance=ExtResource("3_c4xqh")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.7, -0.099999964, -0.2)
@@ -37,5 +44,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.7
 [node name="FireTimer" type="Timer" parent="."]
 
 [connection signal="pressed" from="GridContainer/Fire" to="." method="fire"]
-[connection signal="pressed" from="GridContainer/Attack" to="." method="attack"]
+[connection signal="pressed" from="GridContainer/ToRobot" to="." method="toRobotPressed"]
+[connection signal="pressed" from="GridContainer/ToRandom" to="." method="toRandomPressed"]
 [connection signal="timeout" from="FireTimer" to="." method="onFireTimer"]
